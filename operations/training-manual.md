@@ -38,11 +38,32 @@ Fork in the Road is a one-man pizza shop in downtown Portland, ME. The owner mak
 3. Open a PR with a clear description
 4. André reviews and merges
 
+## Document Structure
+
+| Path | Purpose |
+|---|---|
+| `/docs/business-plan.md` | Business strategy, customer segments, revenue levers, quick wins |
+| `/docs/pay-it-forward-program.md` | Pay-It-Forward slice program design (pending) |
+| `/marketing/playbook.md` | Full marketing playbook: Google, Instagram, hotel, B2B, one-pager |
+| `/marketing/outreach-templates.md` | Ready-to-send B2B outreach templates (pending) |
+| `/tool/menu-manager.html` | Static pizza menu management tool (pending) |
+
 ## Pay-It-Forward Program
-Core concept: A customer (or business) pre-pays for a slice. A high school student who can't afford their lunch gets to redeem it. Inspired by suspended coffee programs seen in bars. Program tracking options:
+Core concept: A customer (or business) pre-pays for a slice. A high school student who can't afford their lunch gets to redeem it. Inspired by suspended coffee programs seen in bars. Tone must preserve dignity — community-first, not charity-feeling. Program tracking options:
 - **Analog:** Chalkboard behind the counter with tally marks
 - **Digital:** Simple counter in the management tool (increment/decrement)
 - **Voucher:** Printed cards the owner gives out or that community orgs distribute
+
+## Competitive Positioning (established 2026-05-14)
+- **vs. Panera:** More personal, more memorable, more customizable — not Panera, not boring
+- **vs. Portland House of Pizza:** More distinctive identity, stronger story, better for group hosts and adventurous eaters
+
+## Marketing Channels (established 2026-05-14)
+1. Google Business Profile — highest-leverage discovery channel
+2. Instagram — visual storytelling via request-based pizza content
+3. Direct B2B outreach — hotels, workshop hosts, offices, tour operators
+4. Leave-behind one-pager — for hotel front desks and local business partners
+5. Word-of-mouth — fueled by memorable pizzas and community storytelling
 
 ## Chapter 15 — Post-Mortems & Lessons Learned
 *No post-mortems yet. This section will be updated as the project evolves.*
