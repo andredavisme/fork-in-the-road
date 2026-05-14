@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fork in the Road — A Proposal</title>
+  <style>
+    :root {
+      --red: #c0392b;
+      --warm: #f5f0e8;
+      --dark: #1a1a1a;
+      --mid: #555;
+      --accent: #e67e22;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--warm);
+      color: var(--dark);
+      line-height: 1.7;
+    }
+
+    .hero {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 80px 20px 60px;
+    }
+    .hero .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: bold;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0.92;
+    }
+
+    section {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+      color: var(--red);
+    }
+    section p {
+      font-size: 1.05rem;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 2px solid #ddd;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+      margin-top: 28px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 24px;
+      border-left: 4px solid var(--red);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .card .icon { font-size: 1.8rem; margin-bottom: 10px; }
+    .card h3 { font-size: 1rem; margin-bottom: 6px; color: var(--dark); }
+    .card p { font-size: 0.9rem; margin: 0; }
+
+    .tools { margin-top: 28px; }
+    .tool {
+      background: white;
+      border-radius: 10px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .tool .badge {
+      background: var(--red);
+      color: white;
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: bold;
+      white-space: nowrap;
+      margin-top: 4px;
+    }
+    .tool-body { flex: 1; }
+    .tool h3 { font-size: 1.05rem; margin-bottom: 6px; }
+    .tool p { font-size: 0.92rem; margin: 0 0 12px; color: var(--mid); }
+    .tool-link {
+      display: inline-block;
+      font-size: 0.82rem;
+      font-family: 'Georgia', serif;
+      padding: 6px 14px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: opacity 0.2s;
+    }
+    .tool-link.live {
+      background: var(--red);
+      color: white;
+    }
+    .tool-link.coming-soon {
+      background: #e8e3d8;
+      color: #999;
+      cursor: default;
+      pointer-events: none;
+    }
+    .tool-link.live:hover { opacity: 0.85; }
+
+    .cost-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+      font-size: 0.95rem;
+    }
+    .cost-table th {
+      background: var(--red);
+      color: white;
+      padding: 12px 16px;
+      text-align: left;
+    }
+    .cost-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid #e0ddd5;
+      background: white;
+    }
+    .cost-table tr:last-child td { border-bottom: none; }
+    .green { color: #27ae60; font-weight: bold; }
+
+    .highlight-box {
+      background: #fff8f0;
+      border: 2px solid var(--accent);
+      border-radius: 10px;
+      padding: 28px;
+      margin-top: 24px;
+    }
+    .highlight-box h3 { color: var(--accent); margin-bottom: 10px; font-size: 1.1rem; }
+
+    .cta-section {
+      background: var(--red);
+      color: white;
+      text-align: center;
+      padding: 70px 24px;
+    }
+    .cta-section h2 { font-size: 2rem; margin-bottom: 16px; color: white; }
+    .cta-section p { max-width: 520px; margin: 0 auto 32px; opacity: 0.9; font-size: 1.05rem; }
+    .cta-btn {
+      display: inline-block;
+      background: white;
+      color: var(--red);
+      font-weight: bold;
+      padding: 16px 36px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.2s;
+    }
+    .cta-btn:hover { opacity: 0.88; }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      font-size: 0.8rem;
+      color: #aaa;
+      background: var(--warm);
+    }
+  </style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">A friendly proposal for</div>
+  <h1>Fork in the Road</h1>
+  <p>A few simple tools that help your pizza speak for itself — and bring more people through the door.</p>
+</div>
+
+<section>
+  <h2>Every great spot hits a slow patch.</h2>
+  <p>Fork in the Road already has what most restaurants spend years trying to build: a concept people remember, a community that cares, and food made the way it should be.</p>
+  <p>When foot traffic slows, it's rarely about the food. It's usually about visibility, consistency, and making it easy for loyal customers to do the word-of-mouth work for you.</p>
+  <div class="cards">
+    <div class="card">
+      <div class="icon">📋</div>
+      <h3>No central menu home</h3>
+      <p>Specials and request items live in too many places — or nowhere people can easily find.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🏨</div>
+      <h3>Untapped B2B traffic</h3>
+      <p>Hotels, tour operators, and corporate lunches are looking for exactly what you offer.</p>
+    </div>
+    <div class="card">
+      <div class="icon">🎓</div>
+      <h3>Community story untold</h3>
+      <p>The Pay-It-Forward slice program is a genuine Portland story — but it's invisible right now.</p>
+    </div>
+  </div>
+</section>
+<hr class="divider"/>
+
+<section>
+  <h2>The proposal: four lightweight tools.</h2>
+  <p>No apps to download. No monthly SaaS fees. No complexity. Just clean, fast tools that run on your existing setup and give you back control of your story.</p>
+  <div class="tools">
+
+    <div class="tool">
+      <span class="badge">Tool 1</span>
+      <div class="tool-body">
+        <h3>Pizza Menu Manager</h3>
+        <p>A simple page to manage daily specials and request-only items — printable, shareable, always current. Your menu, your way, updated in minutes.</p>
+        <a href="#" class="tool-link coming-soon">🔧 Coming Soon</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <span class="badge">Tool 2</span>
+      <div class="tool-body">
+        <h3>Pay-It-Forward Tracker</h3>
+        <p>Give the suspended slice program a real home — track donations and redemptions, and let customers see the impact they're part of. This is marketing that feels human.</p>
+        <a href="#" class="tool-link coming-soon">🔧 Coming Soon</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <span class="badge">Tool 3</span>
+      <div class="tool-body">
+        <h3>B2B Outreach Templates</h3>
+        <p>Ready-to-send emails for hotel concierges, workshop hosts, tour operators, and corporate lunch coordinators — so new revenue channels take minutes, not days, to open.</p>
+        <a href="#" class="tool-link coming-soon">🔧 Coming Soon</a>
+      </div>
+    </div>
+
+    <div class="tool">
+      <span class="badge">Tool 4</span>
+      <div class="tool-body">
+        <h3>Marketing Playbook</h3>
+        <p>A living guide for social posts, seasonal pushes, and community moments — built around Fork in the Road's voice, not a generic template.</p>
+        <a href="#" class="tool-link coming-soon">🔧 Coming Soon</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<hr class="divider"/>
+
+<section>
+  <h2>The story hiding in plain sight.</h2>
+  <p>The Pay-It-Forward slice program isn't just a nice gesture — it's a Portland story waiting to be told. When high school kids can walk in and eat, that ripples through families, teachers, and neighbors.</p>
+  <div class="highlight-box">
+    <h3>🍕 What if customers could see it in real time?</h3>
+    <p>A simple display — "12 slices donated this week. 9 redeemed." — turns a quiet act of kindness into something the whole community participates in. People tip more. People come back. People tell their friends.</p>
+  </div>
+</section>
+<hr class="divider"/>
+
+<section>
+  <h2>Why it makes sense.</h2>
+  <p>These tools are built to be low-cost, low-maintenance, and high-impact. Here's the honest breakdown:</p>
+  <table class="cost-table">
+    <thead>
+      <tr><th>Item</th><th>Detail</th><th>Cost</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Menu Manager tool</td><td>Static HTML, no hosting fees</td><td class="green">$0/mo</td></tr>
+      <tr><td>Pay-It-Forward tracker</td><td>Runs on free tier database</td><td class="green">$0/mo</td></tr>
+      <tr><td>B2B outreach templates</td><td>One-time build, yours to keep</td><td class="green">One-time</td></tr>
+      <tr><td>Marketing playbook</td><td>Living doc, editable anytime</td><td class="green">One-time</td></tr>
+      <tr><td><strong>Your time to run it</strong></td><td>~15 min/week once set up</td><td class="green">Minimal</td></tr>
+    </tbody>
+  </table>
+</section>
+<hr class="divider"/>
+
+<div class="cta-section">
+  <h2>Let's talk about it.</h2>
+  <p>This is a neighbor-to-neighbor idea. No pressure, no pitch deck, no strings. Just a few tools that might help a great pizza place thrive in Portland for a long time.</p>
+  <a href="mailto:hello@forkintheroadportland.com" class="cta-btn">Start the conversation →</a>
+</div>
+
+<footer>
+  Prepared with care — Portland, ME &nbsp;·&nbsp; 2026
+</footer>
+
+</body>
+</html>
